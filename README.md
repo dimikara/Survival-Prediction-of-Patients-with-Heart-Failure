@@ -74,27 +74,27 @@ The main task that I seek to solve with this project & dataset is to classify pa
 ### Access
 
 First, I made the data publicly accessible in the current GitHub repository via this link:
-(https://raw.githubusercontent.com/dimikara/heart-failure-prediction/master/heart_failure_clinical_records_dataset.csv)[https://raw.githubusercontent.com/dimikara/heart-failure-prediction/master/heart_failure_clinical_records_dataset.csv]
+[https://raw.githubusercontent.com/dimikara/heart-failure-prediction/master/heart_failure_clinical_records_dataset.csv](https://raw.githubusercontent.com/dimikara/heart-failure-prediction/master/heart_failure_clinical_records_dataset.csv)
 
-Then, I registered the dataset in Azure Machine Learning Studio as it is depicted below:
+and then create the dataset: 
 
-***Create dataset from web files:*** _Settings and preview_
-![Create dataset from web files](img/01.JPG?raw=true "Create dataset from web files: Settings and preview")
+![Dataset creation](img/00.JPG?raw=true "heart-failure-prediction dataset creation")
 
-***Create dataset from web files:*** _Schema_
-
-Here we define the features `anaemia`, `diabetes`, `high_blood_pressure`, `smoking`, and `DEATH_EVENT` as `Boolean`:
-
-![Create dataset from web files](img/02.JPG?raw=true "Create dataset from web files: Schema")
-
-***Create dataset from web files:*** _Confirm details_
-![Create dataset from web files](img/03.JPG?raw=true "Create dataset from web files: Confirm details")
+As it is depicted below, the dataset is registered in Azure Machine Learning Studio:
 
 ***Registered datasets:*** _Dataset heart-failure-prediction registered_
 ![Registered datasets](img/04.JPG?raw=true "heart-failure-prediction dataset registered")
 
+I am also accessing the data directly via:
 
+```
+data = pd.read_csv('./heart_failure_clinical_records_dataset.csv')
+```
 ## Automated ML
+
+***AutoML settings and configuration:***
+
+![AutoML settings & configuration](img/50.JPG?raw=true "AutoML settings & configuration")
 
 Below you can see an overview of the `automl` settings and configuration I used for the AutoML run:
 
@@ -182,14 +182,16 @@ I chose not to enable enforcing the ONNX-compatible models at this stage. Howeve
 
 During the AutoML run, the _Data Guardrails_ are run when automatic featurization is enabled. As we can see in the screenshot below, the dataset passed all three checks:
 
+![Data Guardrails Checks](img/40B.JPG?raw=true "Data Guardrails Checks")
+
 ![Data Guardrails Checks](img/40.JPG?raw=true "Data Guardrails Checks")
+
 
 #### Completion of the AutoML run (RunDetails widget): 
 
 ![AutoML completed](img/21.JPG?raw=true "AutoML completed: RunDetails widget")
 
 #### Best model
-
 
 After the completion, we can see the resulting models:
 
