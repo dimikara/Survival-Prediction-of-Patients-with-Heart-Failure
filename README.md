@@ -325,18 +325,67 @@ _Best model metrics_
 
 ## Model Deployment
 
-Using as basis the `accuracy` metric, we can state that the best AutoML model is superior to the best model that resulted from the HyperDrive run. For this reason, I choose to deploy the best AutoML model. 
+_Registered models in Azure Machine Learning Studio_
 
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+![Registered models](img/23.JPG?raw=true "Registered models")
+
+_Runs of the experiment_
+
+![Runs of the experiment](img/25.JPG?raw=true "Runs of the experiment")
+
+Using as basis the `accuracy` metric, we can state that the best AutoML model is superior to the best model that resulted from the HyperDrive run. For this reason, I choose to deploy the best model from AutoML run. 
+
+![Best model deployment](img/22.JPG?raw=true "Best model deployment")
+
+_Best AutoML model deployed (Azure Machine Learning Studio)_
+
+![Best AutoML model deployed successfully](img/26.JPG?raw=true "Best AutoML model deployed successfully")
+
+![Best AutoML model deployed successfully](img/27.JPG?raw=true "Best AutoML model deployed successfully")
+
+_Endpoint (Azure Machine Learning Studio)_
+
+![ACI service](img/28.JPG?raw=true "ACI service")
+
+### Consuming/testing the endpoint (ACI service)
+
+After the model is deployed successfully and the service status is _healthy_, I can print the _scoring URI_, the _Swagger URI_ and the _primary authentication key_:
+
+![ACI service status and data](img/35.JPG?raw=true "ACI service status and data")
+
+The same info can be retrieved from Azure Machine Learning Studio as well:
+
+![ACI service details](img/33.JPG?raw=true "ACI service details")
+
+In order to test the deployed model, I use a _Python_ file: `endpoint.py`:
+
+![endpoint.py file](img/31.JPG?raw=true "endpoint.py file")
+
+In this file I have inserted two data points. For the appropriate format, refer to the file and the screenshot. I execute Cell 21 and expect to get a response in the format of `true` or `false`:
+
+![Running endpoint.py file within the cell](img/32.JPG?raw=true "Running endpoint.py file within the cell")
+
+In order to test the deployed service, one could use the above file by inserting their data in the `endpoint.py` file, saving it, and then run the relevant cell in the `automl.ipynb` Jupyter Notebook.
+
+**Another way** would be using the Swagger URI of the deployed service and the Swagger UI.
+
+**A third way** would also be to use Azure Machine Learning Studio. Go to the _Endpoints_ section, choose _aciservice_ and click on the tab _Test_:
+
+![Testing ACI service in Azure ML Studio](img/52.JPG?raw=true "Testing ACI service in Azure ML Studio")
+
+Fill in the empty fields with the medical data you want to get a prediction for and click _Test_:
+
+![Getting response](img/53.JPG?raw=true "Getting response")
+
+
 
 
 ## Screen Recording
 
-The screen recording can be found [here]() and it shows the project in action. More specifically, the screencast demonstrates:
+The screen recording can be found [here](https://youtu.be/5oCiH-J-2S8) and it shows the project in action. More specifically, the screencast demonstrates:
 - A working model
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
-
 
 ## Comments and future improvements
 
@@ -355,7 +404,7 @@ I would love to further explore on this in order to create a model with higher a
 
 * The question of how much training data is required for machine learning is always valid and, by all means, the dataset used here is rather small and geographically limited: it contains the medical records of only 299 patients and comes from only a specific geographical area. Increasing the sample size can mean higher level of accuracy and more reliable results. Plus, a dataset including data from patients from around the world would also be more reliable as it would compensate for factors specific to geographical regions.
 
-* Finally, although cheerful and taking into account gender equality, it would be great not to have issues like these:
+* Finally, although cheerful and taking into account gender equality, it would be great not to stumble upon issues like this:
 
 ![Notebook not available](img/09.JPG?raw=true "Notebook not available")
 
