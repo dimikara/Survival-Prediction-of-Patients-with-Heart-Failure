@@ -182,34 +182,64 @@ I chose not to enable enforcing the ONNX-compatible models at this stage. Howeve
 
 During the AutoML run, the _Data Guardrails_ are run when automatic featurization is enabled. As we can see in the screenshot below, the dataset passed all three checks:
 
-![Data Guardrails Checks](img/40B.JPG?raw=true "Data Guardrails Checks")
+***Data Guardrails Checks in the Notebook***
+![Data Guardrails Checks](img/40B.JPG?raw=true "Data Guardrails Checks in the Notebook")
 
-![Data Guardrails Checks](img/40.JPG?raw=true "Data Guardrails Checks")
+***Data Guardrails Checks in Azure Machine Learning Studio***
+![Data Guardrails Checks](img/40.JPG?raw=true "Data Guardrails Checks in Azure Machine Learning Studio")
 
 
 #### Completion of the AutoML run (RunDetails widget): 
 
 ![AutoML completed](img/21.JPG?raw=true "AutoML completed: RunDetails widget")
 
+![AutoML completed](img/21B.JPG?raw=true "AutoML completed: RunDetails widget")
+
+![AutoML run models](img/51.JPG?raw=true "AutoML run models")
+
 #### Best model
 
-After the completion, we can see the resulting models:
+After the completion, we can see and take the metrics and details of the best run:
 
-![Completed run models](img/Completed_run_models.JPG?raw=true "Completed run models")
+![Best run metrics and details](img/54.JPG?raw=true "Best run metrics and details")
 
-In the _Models_ tab, the first model (at the top) is the best model.
-You can see it below along with some of its characteristics & metrics:
+![Best run properties](img/55.JPG?raw=true "Best run properties")
 
-![Best model](img/Best_model.JPG?raw=true "Best model")
+![Fitted model parameters](img/56.JPG?raw=true "Fitted model parameters")
 
-![Best model graphs](img/Best_model_graphs.JPG?raw=true "Best model graphs")
+Best model results:
 
-![Best model metrics](img/Best_model2_metrics.JPG?raw=true "Best model metrics")
+| AutoML Model | |
+| :---: | :---: |
+| id | AutoML_213153bb-f0e4-4be9-b265-6bbad4f0f9e4_40 |
+| Accuracy | 0.8595525727069351 |
+| AUC_weighted | 0.9087491748331944 |
+| Algorithm | VotingEnsemble |
 
 
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+***Screenshots from Azure ML Studio***
 
-*TODO* Remember to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+_AutoML models_
+
+![AutoML models](img/41.JPG?raw=true "AutoML models")
+
+_Best model data_
+
+![Best model data](img/39.JPG?raw=true "Best model data")
+
+_Best model metrics_
+
+![Best model metrics](img/38.JPG?raw=true "Best model metrics")
+
+_Charts_
+
+![Best model metrics - Charts](img/42.JPG?raw=true "Best model metrics - Charts")
+
+![Best model metrics - Charts](img/43.JPG?raw=true "Best model metrics - Charts")
+
+_Aggregate feature importance_
+
+![Best model metrics - Charts](img/44.JPG?raw=true "Best model metrics - Charts")
 
 
 ## Hyperparameter Tuning
