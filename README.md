@@ -53,11 +53,11 @@ The dataset contains 13 features:
 | Feature | Explanation | Measurement |
 | :---: | :---: | :---: |
 | _age_ | Age of patient | Years (40-95) |
-| _anaemia_ | Decrease of red blood cells or hemoglobin | Boolean (0=No, 1=Yes |
+| _anaemia_ | Decrease of red blood cells or hemoglobin | Boolean (0=No, 1=Yes) |
 | _creatinine-phosphokinase_ | Level of the CPK enzyme in the blood | mcg/L |
-| _diabetes_ | Whether the patient has diabetes or not | Boolean (0=No, 1=Yes |
+| _diabetes_ | Whether the patient has diabetes or not | Boolean (0=No, 1=Yes) |
 | _ejection_fraction_ | Percentage of blood leaving the heart at each contraction | Percentage |
-| _high_blood_pressure_ | Whether the patient has hypertension or not | Boolean (0=No, 1=Yes |
+| _high_blood_pressure_ | Whether the patient has hypertension or not | Boolean (0=No, 1=Yes) |
 | _platelets_ | Platelets in the blood | kiloplatelets/mL	|
 | _serum_creatinine_ | Level of creatinine in the blood | mg/dL |
 | _serum_sodium_ | Level of sodium in the blood | mEq/L |
@@ -241,17 +241,92 @@ _Aggregate feature importance_
 
 ![Best model metrics - Charts](img/44.JPG?raw=true "Best model metrics - Charts")
 
+As we can see, **time** is by far the **most important factor**, followed by serum creatinine and ejection fraction.
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+
+For this experiment I am using a custom Scikit-learn Logistic Regression model, whose hyperparameters I am optimising using HyperDrive. Logistic regression is best suited for binary classification models like this one and this is the main reason I chose it.
+
+I specify the parameter sampler using the parameters C and max_iter and chose discrete values with choice for both parameters.
+
+**Parameter sampler**
+
+I specified the parameter sampler as such:
+
+```
+ps = RandomParameterSampling(
+    {
+        '--C' : choice(0.001,0.01,0.1,1,10,20,50,100,200,500,1000),
+        '--max_iter': choice(50,100,200,300)
+    }
+)
+```
+
+I chose discrete values with _choice_ for both parameters, _C_ and _max_iter_.
+
+_C_ is the Regularization while _max_iter_ is the maximum number of iterations.
+
+_RandomParameterSampling_ is one of the choices available for the sampler and I chose it because it is the faster and supports early termination of low-performance runs. If budget is not an issue, we could use _GridParameterSampling_ to exhaustively search over the search space or _BayesianParameterSampling_ to explore the hyperparameter space. 
+
+**Early stopping policy**
+
+An early stopping policy is used to automatically terminate poorly performing runs thus improving computational efficiency. I chose the _BanditPolicy_ which I specified as follows:
+```
+policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
+```
+_evaluation_interval_: This is optional and represents the frequency for applying the policy. Each time the training script logs the primary metric counts as one interval.
+
+_slack_factor_: The amount of slack allowed with respect to the best performing training run. This factor specifies the slack as a ratio.
+
+Any run that doesn't fall within the slack factor or slack amount of the evaluation metric with respect to the best performing run will be terminated. This means that with this policy, the best performing runs will execute until they finish and this is the reason I chose it.
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+#### Completion of the HyperDrive run (RunDetails widget):
 
-*TODO* Remember to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+![HyperDrive run](img/11.JPG?raw=true "HyperDrive run")
+
+![HyperDrive run](img/12.JPG?raw=true "HyperDrive run")
+
+#### Best model
+
+After the completion, we can see and take the metrics and details of the best run:
+
+![Best run metrics and details](img/15.JPG?raw=true "Best run metrics and details")
+
+![HyperDrive run hyperparameters](img/14.JPG?raw=true "HyperDrive run hyperparameters")
+
+![HyperDrive run hyperparameters](img/16.JPG?raw=true "HyperDrive run hyperparameters")
+
+Best model overview:
+
+| HyperDrive Model | |
+| :---: | :---: |
+| id | HD_debd4c29-658d-4280-b761-2308b5eff7e4_1 |
+| Accuracy | 0.8333333333333334 |
+| --C | 0.01 |
+| --max_iter | 300 |
+
+***Screenshots from Azure ML Studio***
+
+_HyperDrive model_
+
+![HyperDrive model](img/17.JPG?raw=true "HyperDrive model")
+
+![HyperDrive model](img/46.JPG?raw=true "HyperDrive model")
+
+_Best model data and details_
+
+![Best model details](img/47.JPG?raw=true "Best model details")
+
+_Best model metrics_
+
+![Best model metrics](img/20.JPG?raw=true "Best model metrics")
 
 ## Model Deployment
+
+Using as basis the `accuracy` metric, we can state that the best AutoML model is superior to the best model that resulted from the HyperDrive run. For this reason, I choose to deploy the best AutoML model. 
+
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 
 
