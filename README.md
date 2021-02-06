@@ -65,7 +65,6 @@ The dataset contains 13 features:
 | smoking | Whether the patient smokes or not | Binary (0=No, 1=Yes) |
 | time | Follow-up period | Days |
 | DEATH_EVENT | Whether the patient died during the follow-up period | Binary (0=No, 1=Yes) |
-| :---: | :---: | :---: |
 
 
 ### Task 
@@ -73,7 +72,7 @@ The main task that I seek to solve with this project & dataset is to classify pa
 
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+
 First, I made the data publicly accessible in the current GitHub repository via this link:
 (https://raw.githubusercontent.com/dimikara/heart-failure-prediction/master/heart_failure_clinical_records_dataset.csv)[https://raw.githubusercontent.com/dimikara/heart-failure-prediction/master/heart_failure_clinical_records_dataset.csv]
 
@@ -206,7 +205,6 @@ You can see it below along with some of its characteristics & metrics:
 ![Best model metrics](img/Best_model2_metrics.JPG?raw=true "Best model metrics")
 
 
-### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
 
 *TODO* Remember to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
