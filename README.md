@@ -386,7 +386,7 @@ Fill in the empty fields with the medical data you want to get a prediction for 
 
 ## Screen Recording
 
-The screen recording can be found [here](https://drive.google.com/file/d/1iTg3wgVEFFyWoawn80EX5_nWDU0y_s4E/view?usp=sharing) and it shows the project in action. More specifically, the screencast demonstrates:
+The screen recording can be found [here](https://www.dropbox.com/s/1fubwdza2k53nyz/record_000007.avi?dl=0) and it shows the project in action. More specifically, the screencast demonstrates:
 - A working model
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
