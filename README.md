@@ -288,9 +288,13 @@ Any run that doesn't fall within the slack factor or slack amount of the evaluat
 
 ![HyperDrive run](img/12.JPG?raw=true "HyperDrive run")
 
+![HyperDrive RunDetails widget](img/HyperDrive_RunDetails_widget.JPG?raw=true "HyperDrive RunDetails widget")
+
+Please also see this video [here](https://drive.google.com/file/d/1U5UObvcOoq5uySSGtbxIwUYxGPk2M1Gd/view?usp=sharing) where one can see that the RunDetails widget is enabled and the experiment is logging during its run until it shows 'Completed'. 
+
 #### Best model
 
-After the completion, we can see and take the metrics and details of the best run:
+After the completion, we can see and get the metrics and details of the best run:
 
 ![Best run metrics and details](img/15.JPG?raw=true "Best run metrics and details")
 
@@ -382,10 +386,11 @@ Fill in the empty fields with the medical data you want to get a prediction for 
 
 ## Screen Recording
 
-The screen recording can be found [here](https://youtu.be/5oCiH-J-2S8) and it shows the project in action. More specifically, the screencast demonstrates:
+The screen recording can be found [here](https://drive.google.com/file/d/1iTg3wgVEFFyWoawn80EX5_nWDU0y_s4E/view?usp=sharing) and it shows the project in action. More specifically, the screencast demonstrates:
 - A working model
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
+
 
 ## Comments and future improvements
 
