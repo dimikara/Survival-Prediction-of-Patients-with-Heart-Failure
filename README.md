@@ -329,7 +329,18 @@ _Best model metrics_
 
 ## Model Deployment
 
+The deployment is done following the steps below:
 
+* Selection of an already registered model
+* Preparation of an inference configuration
+* Preparation of an entry script
+* Choosing a compute target
+* Deployment of the model
+* Testing the resulting web service
+
+### Registered model
+
+Using as basis the `accuracy` metric, we can state that the best AutoML model is superior to the best model that resulted from the HyperDrive run. For this reason, I choose to deploy the best model from AutoML run (`best_run_automl.pkl`, Version 2). 
 
 _Registered models in Azure Machine Learning Studio_
 
@@ -339,9 +350,42 @@ _Runs of the experiment_
 
 ![Runs of the experiment](img/25.JPG?raw=true "Runs of the experiment")
 
-Using as basis the `accuracy` metric, we can state that the best AutoML model is superior to the best model that resulted from the HyperDrive run. For this reason, I choose to deploy the best model from AutoML run. 
-
 ![Best model deployment](img/22.JPG?raw=true "Best model deployment")
+
+### Inference configuration
+
+The inference configuration defines the environment used to run the deployed model. The inference configuration includes two entities, which are used to run the model when it's deployed:
+
+![Inference configuration](img/62.JPG?raw=true "Inference configuration")
+
+- An entry script, named `scoring_file_v_1_0_0.py`.
+- An Azure Machine Learning environment, named `env.yml` in this case. The environment defines the software dependencies needed to run the model and entry script.
+
+![Inference configuration](img/63.JPG?raw=true "Inference configuration")
+
+### Entry script
+
+The entry script is the `scoring_file_v_1_0_0.py` file. The entry script loads the model when the deployed service starts and it is also responsible for receiving data, passing it to the model, and then returning a response.
+### Compute target
+
+As compute target, I chose the Azure Container Instances (ACI) service, which is used for low-scale CPU-based workloads that require less than 48 GB of RAM.
+
+The AciWebservice Class represents a machine learning model deployed as a web service endpoint on Azure Container Instances. The deployed service is created from the model, script, and associated files, as I explain above. The resulting web service is a load-balanced, HTTP endpoint with a REST API. We can send data to this API and receive the prediction returned by the model.
+
+![Compute target](img/64.JPG?raw=true "Compute target")
+
+`cpu_cores` : It is the number of CPU cores to allocate for this Webservice. Can also be a decimal.
+
+`memory_gb` : The amount of memory (in GB) to allocate for this Webservice. Can be a decimal as well.
+
+`auth_enabled` : I set it to _True_ in order to enable auth for the Webservice.
+
+`enable_app_insights` : I set it to _True_ in order to enable AppInsights for this Webservice.
+### Deployment
+
+Bringing all of the above together, here is the actual deployment in action:
+
+![Model deployment](img/61.JPG?raw=true "Model deployment")
 
 _Best AutoML model deployed (Azure Machine Learning Studio)_
 
@@ -349,13 +393,14 @@ _Best AutoML model deployed (Azure Machine Learning Studio)_
 
 ![Best AutoML model deployed successfully](img/27.JPG?raw=true "Best AutoML model deployed successfully")
 
+Deployment takes some time to conclude, but when it finishes successfully the ACI web service has a status of ***Healthy*** and the model is deployed correctly. We can now move to the next step of actually testing the endpoint.
+### Consuming/testing the endpoint (ACI service)
+
 _Endpoint (Azure Machine Learning Studio)_
 
 ![ACI service](img/28.JPG?raw=true "ACI service")
 
-### Consuming/testing the endpoint (ACI service)
-
-After the model is deployed successfully and the service status is _healthy_, I can print the _scoring URI_, the _Swagger URI_ and the _primary authentication key_:
+After the successful deployment of the model and with a _Healthy_ service, I can print the _scoring URI_, the _Swagger URI_ and the _primary authentication key_:
 
 ![ACI service status and data](img/35.JPG?raw=true "ACI service status and data")
 
@@ -363,15 +408,45 @@ The same info can be retrieved from Azure Machine Learning Studio as well:
 
 ![ACI service details](img/33.JPG?raw=true "ACI service details")
 
-In order to test the deployed model, I use a _Python_ file: `endpoint.py`:
+The scoring URI can be used by clients to submit requests to the service.
+
+In order to test the deployed model, I use a _Python_ file, named `endpoint.py`:
 
 ![endpoint.py file](img/31.JPG?raw=true "endpoint.py file")
 
-In this file I have inserted two data points. For the appropriate format, refer to the file and the screenshot. I execute Cell 21 and expect to get a response in the format of `true` or `false`:
+In the beginning, I fill in the `scoring_uri` and `key` with the data of the _aciservice_ printed above. We can test our deployed service, using test data in JSON format, to make sure the web service returns a result.
+
+In order to request data, the REST API expects the body of the request to be a JSON document with the following structure: 
+
+```
+{
+    "data":
+        [
+            <model-specific-data-structure>
+        ]
+}
+```
+In our case:
+
+![Data structure](img/65.JPG?raw=true "Data structure")
+
+The data is then converted to JSON string format:
+
+![Conversion to JSON string format](img/66.JPG?raw=true "Conversion to JSON string format")
+
+We set the content type:
+
+![Setting the content type](img/67.JPG?raw=true "Setting the content type")
+
+Finally, we make the request and print the response on screen:
+
+![Request and response](img/68.JPG?raw=true "Request and response")
+
+I execute Cell 21 and, based on the above, I expect to get a response in the format of `true` or `false`:
 
 ![Running endpoint.py file within the cell](img/32.JPG?raw=true "Running endpoint.py file within the cell")
 
-In order to test the deployed service, one could use the above file by inserting their data in the `endpoint.py` file, saving it, and then run the relevant cell in the `automl.ipynb` Jupyter Notebook.
+In order to test the deployed service, one could use the above file by inserting data in the `endpoint.py` file, saving it, and then run the relevant cell in the `automl.ipynb` Jupyter Notebook.
 
 **Another way** would be using the Swagger URI of the deployed service and the Swagger UI.
 
@@ -382,8 +457,6 @@ In order to test the deployed service, one could use the above file by inserting
 Fill in the empty fields with the medical data you want to get a prediction for and click _Test_:
 
 ![Getting response](img/53.JPG?raw=true "Getting response")
-
-
 
 
 ## Screen Recording
