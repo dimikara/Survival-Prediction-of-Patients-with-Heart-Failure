@@ -290,7 +290,7 @@ Any run that doesn't fall within the slack factor or slack amount of the evaluat
 
 ![HyperDrive RunDetails widget](img/HyperDrive_RunDetails_widget.JPG?raw=true "HyperDrive RunDetails widget")
 
-Please also see this video [here](https://drive.google.com/file/d/1U5UObvcOoq5uySSGtbxIwUYxGPk2M1Gd/view?usp=sharing) where one can see that the RunDetails widget is enabled and the experiment is logging during its run until it shows 'Completed'. 
+Please also see this video [here](https://www.dropbox.com/s/htimvott2bqlmj2/Hyperdrive_RunDetails_widget.mp4?dl=0) where one can see that the RunDetails widget is enabled and the experiment is logging during its run until it shows 'Completed'. 
 
 #### Best model
 
@@ -388,7 +388,13 @@ Fill in the empty fields with the medical data you want to get a prediction for 
 
 ## Screen Recording
 
+<<<<<<< HEAD
 The screen recording can be found [here](https://youtu.be/5tuz2Itq0Ms) and it shows the project in action. More specifically, the screencast demonstrates:
+||||||| d64ddd9
+The screen recording can be found [here](https://drive.google.com/file/d/1iTg3wgVEFFyWoawn80EX5_nWDU0y_s4E/view?usp=sharing) and it shows the project in action. More specifically, the screencast demonstrates:
+=======
+The screen recording can be found [here](https://www.dropbox.com/s/1fubwdza2k53nyz/record_000007.avi?dl=0) and it shows the project in action. More specifically, the screencast demonstrates:
+>>>>>>> 28a0919fd896a75810afb701eba21c50c482fec7
 - A working model
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
