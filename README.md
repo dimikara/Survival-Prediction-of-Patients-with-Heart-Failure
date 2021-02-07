@@ -448,7 +448,7 @@ I execute Cell 21 and, based on the above, I expect to get a response in the for
 
 In order to test the deployed service, one could use the above file by inserting data in the `endpoint.py` file, saving it, and then run the relevant cell in the `automl.ipynb` Jupyter Notebook.
 
-**Another way** would be using the Swagger URI of the deployed service and the Swagger UI.
+**Another way** would be using the Swagger URI of the deployed service and the [Swagger UI](https://swagger.io/tools/swagger-ui/).
 
 **A third way** would also be to use Azure Machine Learning Studio. Go to the _Endpoints_ section, choose _aciservice_ and click on the tab _Test_:
 
