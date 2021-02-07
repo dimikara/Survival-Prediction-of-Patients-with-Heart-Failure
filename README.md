@@ -329,6 +329,8 @@ _Best model metrics_
 
 ## Model Deployment
 
+
+
 _Registered models in Azure Machine Learning Studio_
 
 ![Registered models](img/23.JPG?raw=true "Registered models")
@@ -386,7 +388,7 @@ Fill in the empty fields with the medical data you want to get a prediction for 
 
 ## Screen Recording
 
-The screen recording can be found [here](https://drive.google.com/file/d/1iTg3wgVEFFyWoawn80EX5_nWDU0y_s4E/view?usp=sharing) and it shows the project in action. More specifically, the screencast demonstrates:
+The screen recording can be found [here](https://youtu.be/5tuz2Itq0Ms) and it shows the project in action. More specifically, the screencast demonstrates:
 - A working model
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
