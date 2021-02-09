@@ -62,9 +62,9 @@ The dataset contains 13 features:
 | _serum_creatinine_ | Level of creatinine in the blood | mg/dL |
 | _serum_sodium_ | Level of sodium in the blood | mEq/L |
 | _sex_ | Female (F) or Male (M) | Binary (0=F, 1=M) |
-| _smoking_ | Whether the patient smokes or not | Binary (0=No, 1=Yes) |
+| _smoking_ | Whether the patient smokes or not | Boolean (0=No, 1=Yes) |
 | _time_ | Follow-up period | Days |
-| _DEATH_EVENT_ | Whether the patient died during the follow-up period | Binary (0=No, 1=Yes) |
+| _DEATH_EVENT_ | Whether the patient died during the follow-up period | Boolean (0=No, 1=Yes) |
 
 
 ### Task 
