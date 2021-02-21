@@ -52,19 +52,19 @@ The dataset contains 13 features:
 
 | Feature | Explanation | Measurement |
 | :---: | :---: | :---: |
-| _age_ | Age of patient | Years (40-95) |
-| _anaemia_ | Decrease of red blood cells or hemoglobin | Boolean (0=No, 1=Yes) |
-| _creatinine-phosphokinase_ | Level of the CPK enzyme in the blood | mcg/L |
-| _diabetes_ | Whether the patient has diabetes or not | Boolean (0=No, 1=Yes) |
-| _ejection_fraction_ | Percentage of blood leaving the heart at each contraction | Percentage |
-| _high_blood_pressure_ | Whether the patient has hypertension or not | Boolean (0=No, 1=Yes) |
-| _platelets_ | Platelets in the blood | kiloplatelets/mL	|
-| _serum_creatinine_ | Level of creatinine in the blood | mg/dL |
-| _serum_sodium_ | Level of sodium in the blood | mEq/L |
-| _sex_ | Female (F) or Male (M) | Binary (0=F, 1=M) |
-| _smoking_ | Whether the patient smokes or not | Boolean (0=No, 1=Yes) |
-| _time_ | Follow-up period | Days |
-| _DEATH_EVENT_ | Whether the patient died during the follow-up period | Boolean (0=No, 1=Yes) |
+| ***age*** | Age of patient | Years (40-95) |
+| ***anaemia*** | Decrease of red blood cells or hemoglobin | Boolean (0=No, 1=Yes) |
+| ***creatinine-phosphokinase*** | Level of the CPK enzyme in the blood | mcg/L |
+| ***diabetes*** | Whether the patient has diabetes or not | Boolean (0=No, 1=Yes) |
+| ***ejection_fraction*** | Percentage of blood leaving the heart at each contraction | Percentage |
+| ***high_blood_pressure*** | Whether the patient has hypertension or not | Boolean (0=No, 1=Yes) |
+| ***platelets*** | Platelets in the blood | kiloplatelets/mL	|
+| ***serum_creatinine*** | Level of creatinine in the blood | mg/dL |
+| ***serum_sodium*** | Level of sodium in the blood | mEq/L |
+| ***sex*** | Female (F) or Male (M) | Binary (0=F, 1=M) |
+| ***smoking*** | Whether the patient smokes or not | Boolean (0=No, 1=Yes) |
+| ***time*** | Follow-up period | Days |
+| ***DEATH_EVENT*** | Whether the patient died during the follow-up period | Boolean (0=No, 1=Yes) |
 
 
 ### Task 
