@@ -1,3 +1,7 @@
+![Udacity](https://img.shields.io/badge/Udacity-grey?style=for-the-badge&logo=udacity&logoColor=15B8E6)
+![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
+
+
 # Using Machine Learning to Predict Survival of Patients with Heart Failure
 
 ## Table of contents
